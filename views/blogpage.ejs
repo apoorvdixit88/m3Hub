@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Cinzel:wght@400;547&family=Courget&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+		body {
+  margin: 0;
+  padding: 0;
+	background-color: rgba(255, 235, 205, 0.37);
+}
+.blog-header .title {
+	letter-spacing: 1.5px;
+	font-size: 35px;
+  color: black;
+  font-family: 'Cinzel', serif;
+  
+}
+.blog-header .auther{
+	text-align: right;
+	padding-right: 10%;
+	color: rgb(46, 42, 42);
+  font-family: 'Architects Daughter', cursive;
+}
+.drybn-blog .drybn-blog__overlay {
+  position: relative;
+}
+.drybn-blog .blog-header-image {
+  background-image: url("https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 320px;
+  z-index: 2;
+}
+.drybn-blog .blog-header-image::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(180deg, rgba(168, 131, 76, 0.356) 90%, #ac584da2 100%);
+  z-index: 1;
+}
+.drybn-blog .drybn-blog__content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  max-width: 860px;
+  z-index: 2;
+}
+.drybn-blog .blog-header {
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  color: white;
+}
+.drybn-blog .blog-body .featured-image,
+.drybn-blog .blog-body .featured-image--right {
+  display: block;
+  width: 100%;
+  height: 260px;
+  border-radius: 1rem;
+  position: relative;
+}
+.featured-image--left img,
+.featured-image--right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.drybn-blog .blog-body {
+  position: relative;
+  width: calc(100% - 2rem);
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color:rgb(243, 231, 231);
+  font-family: 'Courgette', cursive;
+  padding: 1rem;
+	text-align:justify;
+	letter-spacing: .3px;
+	word-spacing: 4px;
+	line-height: 1.6rem;
+	font-size: larger;
+  z-index: 1;
+}
+.drybn-social-list {
+  margin: 5rem auto;
+}
+.drybn-social-list h3 {
+  text-align: center;
+}
+.drybn-social-list .social-list {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media only screen and (min-width: 760px) {
+	.drybn-blog .blog-header {
+    width: calc(100% - 4rem);
+  }
+	.drybn-blog .blog-body {
+    border-radius: 1rem;
+    width: calc(100% - 20rem);
+    padding: 4rem 10rem;
+    box-shadow: -7px 0 7px -7px #999, 7px 0 7px -7px #999;
+  }
+	.drybn-blog .blog-body {
+    border-radius: 1rem;
+    width: calc(100% - 20rem);
+    padding: 4rem 8rem;
+    box-shadow: -7px -2px 7px -7px #999, 7px -2px 7px -7px #999;
+  }
+	.drybn-blog .blog-body .featured-image,
+	.drybn-blog .blog-body .featured-image--right {
+    width: 240px;
+    height: 260px;
+    float: right;
+  }
+	.drybn-blog .blog-body .featured-image img,
+	.drybn-blog .blog-body .featured-image--right img {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    left: 30px;
+  }
+  .drybn-blog .blog-body .featured-image--left img {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    right: 30px;
+    left: unset;
+  }
+	.drybn-blog .blog-body .featured-image--left {
+    float: left;
+  }
+}
+	</style>
+</head>
+<body>
+  <%-include('./partials/navbar')-%>
+  <div style="margin-top: 4%;">
+	<div class="drybn-blog">
+		<div class="drybn-blog__overlay">
+			<div class="blog-header-image">
+			</div>
+			<div class="drybn-blog__content">
+				<div class="blog-header">
+					<p class="date"></p>
+					<h2 class="title"> <%= blog_post.title %>      </h2>
+					<h2 class="auther">By:-<%=blog_post.author%></h2>
+				</div>
+				<div class="blog-body">
+	
+	          <%-blog_post.editor%>			
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

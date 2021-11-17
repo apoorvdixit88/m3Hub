@@ -1,0 +1,65 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">M3-hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/<%=blog.branch%>">Home</a>
+          
+            <% if(blog==="und"){ %>
+              <a class="nav-link"  href="/">login</a>
+            <% } else{ %>  
+            <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+      </svg>  <%=blog.username %> </a>
+           <% } %>
+      
+          <a class="nav-link" href="#">study material</a>
+          <% if (blog!=="und") { %>
+            <a class="nav-link" href="/blog/create">create blog</a>
+           
+         <% } %> 
+           
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <div class="fs-2 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+</svg>
+        <%=blog.username%>
+      </div>
+      
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body overflow-auto">
+      <div>
+         <h5>my blogs</h5>
+         <% if (blog!=="und") { %>
+          
+         
+        <% blog.content.forEach(element => { %>
+          <div class="card text-dark bg-light mb-3" style="max-width:100%;">
+         
+            <div class="card-body">
+              <h5 class="card-title"><%= element.title %> </h5>
+              <p class="card-text"><%= element.introduction%></p>
+              <a class="btn btn-success" href="/blog/show/<%=element._id %> " >read</a>
+              <a class="btn btn-primary" href="/blog/edit/<%=element._id %> " > edit </a>
+              <a class="btn btn-danger" href="/blog/delete/<%=element._id %> " >delete</a>
+            </div>
+          </div>
+        <% }) %>
+        <% } %>
+        <a class="btn btn-danger my-2 my-sm-0" href="/logout" >logout</a>
+      </div>
+      </div>
+      </div>
